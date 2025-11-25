@@ -14,23 +14,79 @@ class LoginScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(controller: emailCtrl, decoration: const InputDecoration(labelText: 'E-mail')),
-            const SizedBox(height: 12),
-            TextField(controller: passCtrl, obscureText: true, decoration: const InputDecoration(labelText: 'Senha')),
-            const SizedBox(height: 16),
-            RoundedButton(
-              text: 'Entrar',
-              onPressed: () {
-                // Simulação: sempre entra na HomeScreen
-                Navigator.pushReplacementNamed(context, '/home');
-              },
+            // ----- CAMPO EMAIL -----
+            TextField(
+              controller: emailCtrl,
+              style: const TextStyle(color: Colors.black), // cor do texto
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                labelStyle: const TextStyle(color: Colors.black87),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
             ),
+
             const SizedBox(height: 12),
+
+            // ----- CAMPO SENHA -----
+            TextField(
+              controller: passCtrl,
+              obscureText: true,
+              style: const TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                labelStyle: const TextStyle(color: Colors.black87),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            // ----- BOTÃO ENTRAR -----
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/home');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  textStyle: const TextStyle(fontSize: 18),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text('Entrar'),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // ----- BOTÃO CRIAR CONTA (SEM LINHA ROXA) -----
             TextButton(
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/register');
               },
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.blue,
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  decoration: TextDecoration.none, // remove sublinhado
+                ),
+              ),
               child: const Text('Criar conta'),
             ),
           ],
@@ -39,3 +95,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
